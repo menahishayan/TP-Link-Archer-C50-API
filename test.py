@@ -39,15 +39,18 @@ with open('params.json') as f:
   ref = json.load(f)
 
 def get(item):
-    page = requests.post(
-        'http://{}/cgi?{}'.format(hostname,ref['get'][item]['path']),
-        headers={REFERER: referer, COOKIE: cookie},
-        data=(req_parse(ref['get'][item]['body'])),
-        timeout=4)
-        
-    if page.status_code == 200:
-        return res_parse(page.text)
-    else:
-        print(page.status_code)
+    items = []
+    for i in ref['get'][item]:
+        page = requests.post(
+            'http://{}/cgi?{}'.format(hostname,i['path']),
+            headers={REFERER: referer, COOKIE: cookie},
+            data=(req_parse(i['body'])),
+            timeout=4)
+            
+        if page.status_code == 200:
+            items.append(res_parse(page.text).copy())
+        else:
+            print(page.status_code)
+    return items
 
-print(get('info'))
+print(get('5ghz'))

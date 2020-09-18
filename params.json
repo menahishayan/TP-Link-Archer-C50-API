@@ -1,175 +1,223 @@
 {
     "get": {
-        "about": {
-            "path": "1&1&1&8",
-            "body": [
-                "[IGD_DEV_INFO#0,0,0,0,0,0#0,0,0,0,0,0]0,3",
-                "modelName",
-                "description",
-                "X_TP_isFD",
-                "[ETH_SWITCH#0,0,0,0,0,0#0,0,0,0,0,0]1,1",
-                "numberOfVirtualPorts",
-                "[SYS_MODE#0,0,0,0,0,0#0,0,0,0,0,0]2,1",
-                "mode",
-                "[/cgi/info#0,0,0,0,0,0#0,0,0,0,0,0]3,0"
-            ]
-        },
-        "version": {
-            "path": "1",
-            "body": [
-                "[IGD_DEV_INFO#0,0,0,0,0,0#0,0,0,0,0,0]0,2",
-                "hardwareVersion",
-                "softwareVersion"
-            ]
-        },
-        "dhcp_settings": {
-            "path": "1&6",
-            "body": [
-                "[LAN_HOST_CFG#1,0,0,0,0,0#0,0,0,0,0,0]0,0",
-                "[LAN_IP_INTF#0,0,0,0,0,0#1,0,0,0,0,0]1,3",
-                "IPInterfaceIPAddress",
-                "IPInterfaceSubnetMask",
-                "__ifName"
-            ]
-        },
-        "dhcp_clients": {
-            "path": "5",
-            "body": [
-                "[LAN_HOST_ENTRY#0,0,0,0,0,0#0,0,0,0,0,0]0,4",
-                "leaseTimeRemaining",
-                "MACAddress",
-                "hostName",
-                "IPAddress"
-            ]
-        },
-        "restart": {
-            "path": "7",
-            "body": [
-                "[ACT_REBOOT#0,0,0,0,0,0#0,0,0,0,0,0]0,0"
-            ]
-        },
-        "logout": {
-            "path": "8",
-            "body": [
-                "[/cgi/logout#0,0,0,0,0,0#0,0,0,0,0,0]0,0"
-            ]
-        },
-        "info": {
-            "path": "1&1&1&5&5&5&5&5&5&5",
-            "body": [
-                "[SYS_MODE#0,0,0,0,0,0#0,0,0,0,0,0]0,1",
-                "mode",
-                "[IGD#0,0,0,0,0,0#0,0,0,0,0,0]1,1",
-                "LANDeviceNumberOfEntries",
-                "[IGD_DEV_INFO#0,0,0,0,0,0#0,0,0,0,0,0]2,3",
-                "softwareVersion",
-                "hardwareVersion",
-                "upTime",
-                "[WAN_COMMON_INTF_CFG#0,0,0,0,0,0#0,0,0,0,0,0]3,1",
-                "WANAccessType",
-                "[WAN_IP_CONN#0,0,0,0,0,0#0,0,0,0,0,0]4,0",
-                "[WAN_PPP_CONN#0,0,0,0,0,0#0,0,0,0,0,0]5,0",
-                "[WAN_L2TP_CONN#0,0,0,0,0,0#0,0,0,0,0,0]6,0",
-                "[WAN_PPTP_CONN#0,0,0,0,0,0#0,0,0,0,0,0]7,0",
-                "[L2_BRIDGING_ENTRY#0,0,0,0,0,0#0,0,0,0,0,0]8,1",
-                "bridgeName",
-                "[LAN_WLAN#0,0,0,0,0,0#0,0,0,0,0,0]9,12",
-                "status",
-                "SSID",
-                "BSSID",
-                "channel",
-                "autoChannelEnable",
-                "standard",
-                "beaconType",
-                "basicEncryptionModes",
-                "X_TP_Bandwidth",
-                "possibleDataTransmitRates",
-                "WPAAuthenticationMode",
-                "IEEE11iAuthenticationMode"
-            ]
-        },
-        "info2": {
-            "path": "1&1&5&5&5",
-            "body": [
-                "[LAN_WLAN_WDSBRIDGE#1,1,0,0,0,0#0,0,0,0,0,0]0,1",
-                "BridgeEnable",
-                "[LAN_WLAN_WDSBRIDGE#1,2,0,0,0,0#0,0,0,0,0,0]1,1",
-                "BridgeEnable",
-                "[LAN_WLAN_TASK_SCHEDULE#0,0,0,0,0,0#0,0,0,0,0,0]2,2",
-                "enable",
-                "isUsrCtrl",
-                "[LAN_IP6_HOST_CFG#0,0,0,0,0,0#0,0,0,0,0,0]3,0",
-                "[LAN_IP6_INTF#0,0,0,0,0,0#0,0,0,0,0,0]4,0"
-            ]
-        },
-        "info3": {
-            "path": "5&5",
-            "body": [
-                "[LAN_IP_INTF#0,0,0,0,0,0#0,0,0,0,0,0]0,3",
-                "IPInterfaceIPAddress",
-                "IPInterfaceSubnetMask",
-                "X_TP_MACAddress",
-                "[LAN_HOST_CFG#0,0,0,0,0,0#0,0,0,0,0,0]1,1",
-                "DHCPServerEnable"
-            ]
-        },
-        "24ghz": {
-            "path": "6&1",
-            "body": [
-                "[LAN_WLAN_MSSIDENTRY#0,0,0,0,0,0#1,1,0,0,0,0]0,18",
-                "Name",
-                "Enable",
-                "SSID",
-                "SSIDAdvertisementEnable",
-                "isolateClients",
-                "BeaconType",
-                "BasicAuthenticationMode",
-                "WEPKeyIndex",
-                "BasicEncryptionModes",
-                "WPAEncryptionModes",
-                "WPAAuthenticationMode",
-                "IEEE11iEncryptionModes",
-                "IEEE11iAuthenticationMode",
-                "PreSharedKey",
-                "GroupKeyUpdateInterval",
-                "radiusServerIP",
-                "radiusServerPort",
-                "radiusServerPassword",
-                "[LAN_WLAN_GUESTNET#1,1,0,0,0,0#0,0,0,0,0,0]1,1"
-            ]
-        },
-        "5ghz": {
-            "path": "6&1",
-            "body": [
-                "[LAN_WLAN_MSSIDENTRY#0,0,0,0,0,0#1,2,0,0,0,0]0,18",
-                "Name",
-                "Enable",
-                "SSID",
-                "SSIDAdvertisementEnable",
-                "isolateClients",
-                "BeaconType",
-                "BasicAuthenticationMode",
-                "WEPKeyIndex",
-                "BasicEncryptionModes",
-                "WPAEncryptionModes",
-                "WPAAuthenticationMode",
-                "IEEE11iEncryptionModes",
-                "IEEE11iAuthenticationMode",
-                "PreSharedKey",
-                "GroupKeyUpdateInterval",
-                "radiusServerIP",
-                "radiusServerPort",
-                "radiusServerPassword",
-                "[LAN_WLAN_GUESTNET#1,2,0,0,0,0#0,0,0,0,0,0]1,1"
-            ]
-        },
-        "wan": {
-            "path": "1&1",
-            "body": [
-                "[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]0,0",
-                "[WAN_IP_CONN#1,1,2,0,0,0#0,0,0,0,0,0]1,0"
-            ]
-        }
+        "about": [
+            {
+                "path": "1&1&1&8",
+                "body": [
+                    "[IGD_DEV_INFO#0,0,0,0,0,0#0,0,0,0,0,0]0,3",
+                    "modelName",
+                    "description",
+                    "X_TP_isFD",
+                    "[ETH_SWITCH#0,0,0,0,0,0#0,0,0,0,0,0]1,1",
+                    "numberOfVirtualPorts",
+                    "[SYS_MODE#0,0,0,0,0,0#0,0,0,0,0,0]2,1",
+                    "mode",
+                    "[/cgi/info#0,0,0,0,0,0#0,0,0,0,0,0]3,0"
+                ]
+            }
+        ],
+        "version": [
+            {
+                "path": "1",
+                "body": [
+                    "[IGD_DEV_INFO#0,0,0,0,0,0#0,0,0,0,0,0]0,2",
+                    "hardwareVersion",
+                    "softwareVersion"
+                ]
+            }
+        ],
+        "dhcp_settings": [
+            {
+                "path": "1&6",
+                "body": [
+                    "[LAN_HOST_CFG#1,0,0,0,0,0#0,0,0,0,0,0]0,0",
+                    "[LAN_IP_INTF#0,0,0,0,0,0#1,0,0,0,0,0]1,3",
+                    "IPInterfaceIPAddress",
+                    "IPInterfaceSubnetMask",
+                    "__ifName"
+                ]
+            }
+        ],
+        "dhcp_clients": [
+            {
+                "path": "5",
+                "body": [
+                    "[LAN_HOST_ENTRY#0,0,0,0,0,0#0,0,0,0,0,0]0,4",
+                    "leaseTimeRemaining",
+                    "MACAddress",
+                    "hostName",
+                    "IPAddress"
+                ]
+            }
+        ],
+        "restart": [
+            {
+                "path": "7",
+                "body": [
+                    "[ACT_REBOOT#0,0,0,0,0,0#0,0,0,0,0,0]0,0"
+                ]
+            }
+        ],
+        "logout": [
+            {
+                "path": "8",
+                "body": [
+                    "[/cgi/logout#0,0,0,0,0,0#0,0,0,0,0,0]0,0"
+                ]
+            }
+        ],
+        "info": [
+            {
+                "path": "1&1&1&5&5&5&5&5&5&5",
+                "body": [
+                    "[SYS_MODE#0,0,0,0,0,0#0,0,0,0,0,0]0,1",
+                    "mode",
+                    "[IGD#0,0,0,0,0,0#0,0,0,0,0,0]1,1",
+                    "LANDeviceNumberOfEntries",
+                    "[IGD_DEV_INFO#0,0,0,0,0,0#0,0,0,0,0,0]2,3",
+                    "softwareVersion",
+                    "hardwareVersion",
+                    "upTime",
+                    "[WAN_COMMON_INTF_CFG#0,0,0,0,0,0#0,0,0,0,0,0]3,1",
+                    "WANAccessType",
+                    "[WAN_IP_CONN#0,0,0,0,0,0#0,0,0,0,0,0]4,0",
+                    "[WAN_PPP_CONN#0,0,0,0,0,0#0,0,0,0,0,0]5,0",
+                    "[WAN_L2TP_CONN#0,0,0,0,0,0#0,0,0,0,0,0]6,0",
+                    "[WAN_PPTP_CONN#0,0,0,0,0,0#0,0,0,0,0,0]7,0",
+                    "[L2_BRIDGING_ENTRY#0,0,0,0,0,0#0,0,0,0,0,0]8,1",
+                    "bridgeName",
+                    "[LAN_WLAN#0,0,0,0,0,0#0,0,0,0,0,0]9,12",
+                    "status",
+                    "SSID",
+                    "BSSID",
+                    "channel",
+                    "autoChannelEnable",
+                    "standard",
+                    "beaconType",
+                    "basicEncryptionModes",
+                    "X_TP_Bandwidth",
+                    "possibleDataTransmitRates",
+                    "WPAAuthenticationMode",
+                    "IEEE11iAuthenticationMode"
+                ]
+            },
+            {
+                "path": "1&1&5&5&5",
+                "body": [
+                    "[LAN_WLAN_WDSBRIDGE#1,1,0,0,0,0#0,0,0,0,0,0]0,1",
+                    "BridgeEnable",
+                    "[LAN_WLAN_WDSBRIDGE#1,2,0,0,0,0#0,0,0,0,0,0]1,1",
+                    "BridgeEnable",
+                    "[LAN_WLAN_TASK_SCHEDULE#0,0,0,0,0,0#0,0,0,0,0,0]2,2",
+                    "enable",
+                    "isUsrCtrl",
+                    "[LAN_IP6_HOST_CFG#0,0,0,0,0,0#0,0,0,0,0,0]3,0",
+                    "[LAN_IP6_INTF#0,0,0,0,0,0#0,0,0,0,0,0]4,0"
+                ]
+            },
+            {
+                "path": "5&5",
+                "body": [
+                    "[LAN_IP_INTF#0,0,0,0,0,0#0,0,0,0,0,0]0,3",
+                    "IPInterfaceIPAddress",
+                    "IPInterfaceSubnetMask",
+                    "X_TP_MACAddress",
+                    "[LAN_HOST_CFG#0,0,0,0,0,0#0,0,0,0,0,0]1,1",
+                    "DHCPServerEnable"
+                ]
+            }
+        ],
+        "24ghz": [
+            {
+                "path": "1",
+                "body": [
+                    "[LAN_WLAN_WDSBRIDGE#1,1,0,0,0,0#0,0,0,0,0,0]0,8",
+                    "BridgeEnable",
+                    "BridgeAddrMode",
+                    "BridgeBSSID",
+                    "BridgeSSID",
+                    "BridgeAuthMode",
+                    "BridgeEncryptMode",
+                    "BridgeKey",
+                    "BridgeWepKeyIndex"
+                ]
+            },
+            {
+                "path": "6&1",
+                "body": [
+                    "[LAN_WLAN_MSSIDENTRY#0,0,0,0,0,0#1,1,0,0,0,0]0,18",
+                    "Name",
+                    "Enable",
+                    "SSID",
+                    "SSIDAdvertisementEnable",
+                    "isolateClients",
+                    "BeaconType",
+                    "BasicAuthenticationMode",
+                    "WEPKeyIndex",
+                    "BasicEncryptionModes",
+                    "WPAEncryptionModes",
+                    "WPAAuthenticationMode",
+                    "IEEE11iEncryptionModes",
+                    "IEEE11iAuthenticationMode",
+                    "PreSharedKey",
+                    "GroupKeyUpdateInterval",
+                    "radiusServerIP",
+                    "radiusServerPort",
+                    "radiusServerPassword",
+                    "[LAN_WLAN_GUESTNET#1,1,0,0,0,0#0,0,0,0,0,0]1,1"
+                ]
+            }
+        ],
+        "5ghz": [
+            {
+                "path": "1",
+                "body": [
+                    "[LAN_WLAN_WDSBRIDGE#1,2,0,0,0,0#0,0,0,0,0,0]0,8",
+                    "BridgeEnable",
+                    "BridgeAddrMode",
+                    "BridgeBSSID",
+                    "BridgeSSID",
+                    "BridgeAuthMode",
+                    "BridgeEncryptMode",
+                    "BridgeKey",
+                    "BridgeWepKeyIndex"
+                ]
+            },
+            {
+                "path": "6&1",
+                "body": [
+                    "[LAN_WLAN_MSSIDENTRY#0,0,0,0,0,0#1,2,0,0,0,0]0,18",
+                    "Name",
+                    "Enable",
+                    "SSID",
+                    "SSIDAdvertisementEnable",
+                    "isolateClients",
+                    "BeaconType",
+                    "BasicAuthenticationMode",
+                    "WEPKeyIndex",
+                    "BasicEncryptionModes",
+                    "WPAEncryptionModes",
+                    "WPAAuthenticationMode",
+                    "IEEE11iEncryptionModes",
+                    "IEEE11iAuthenticationMode",
+                    "PreSharedKey",
+                    "GroupKeyUpdateInterval",
+                    "radiusServerIP",
+                    "radiusServerPort",
+                    "radiusServerPassword",
+                    "[LAN_WLAN_GUESTNET#1,2,0,0,0,0#0,0,0,0,0,0]1,1"
+                ]
+            }
+        ],
+        "wan": [
+            {
+                "path": "1&1",
+                "body": [
+                    "[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]0,0",
+                    "[WAN_IP_CONN#1,1,2,0,0,0#0,0,0,0,0,0]1,0"
+                ]
+            }
+        ]
     },
     "set": {
         "24ghz": [
