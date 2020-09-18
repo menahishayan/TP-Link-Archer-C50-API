@@ -1,8 +1,4 @@
-from aiohttp.hdrs import (
-    COOKIE,
-    REFERER,
-    CONTENT_TYPE
-)
+from aiohttp.hdrs import (COOKIE, REFERER)
 import base64
 import requests
 import json
@@ -54,5 +50,4 @@ def get(item):
     else:
         print(page.status_code)
 
-for device in get('dhcp_clients'):
-    print(device['hostName'])
+print(get('info'))
