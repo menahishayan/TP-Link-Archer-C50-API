@@ -88,7 +88,7 @@
                 "IEEE11iAuthenticationMode"
             ]
         },
-        "get_24ghz": {
+        "24ghz": {
             "path": "6&1",
             "body": [
                 "[LAN_WLAN_MSSIDENTRY#0,0,0,0,0,0#1,1,0,0,0,0]0,18",
@@ -113,7 +113,7 @@
                 "[LAN_WLAN_GUESTNET#1,1,0,0,0,0#0,0,0,0,0,0]1,1"
             ]
         },
-        "get_5ghz": {
+        "5ghz": {
             "path": "6&1",
             "body": [
                 "[LAN_WLAN_MSSIDENTRY#0,0,0,0,0,0#1,2,0,0,0,0]0,18",
@@ -147,8 +147,98 @@
         }
     },
     "set": {
-        "24": {
-            "path": "2"
-        }
+        "24ghz": [
+            {
+                "path": "2",
+                "body": [
+                    "[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5",
+                    "BeaconType",
+                    "IEEE11iAuthenticationMode",
+                    "IEEE11iEncryptionModes",
+                    "X_TP_PreSharedKey",
+                    "X_TP_GroupKeyUpdateInterval"
+                ]
+            }
+        ],
+        "5ghz": [
+            {
+                "path": "2",
+                "body": [
+                    "[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5",
+                    "BeaconType",
+                    "IEEE11iAuthenticationMode",
+                    "IEEE11iEncryptionModes",
+                    "X_TP_PreSharedKey",
+                    "X_TP_GroupKeyUpdateInterval"
+                ]
+            }
+        ],
+        "wan": [
+            {
+                "path": "2",
+                "body": [
+                    "[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1",
+                    "enable"
+                ]
+            },
+            {
+                "path": "2&2&2",
+                "body": [
+                    "[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1",
+                    "X_TP_lastUsedIntf",
+                    "[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]1,19",
+                    "username",
+                    "password",
+                    "connectionTrigger",
+                    "PPPAuthenticationProtocol",
+                    "PPPoEACName",
+                    "PPPoEServiceName",
+                    "maxMRUSize",
+                    "NATEnabled",
+                    "X_TP_FullconeNATEnabled",
+                    "X_TP_FirewallEnabled",
+                    "X_TP_IGMPProxyEnabled",
+                    "X_TP_IGMPForceVersion",
+                    "X_TP_UseStaticIP",
+                    "PPPLCPEcho",
+                    "DNSOverrideAllowed",
+                    "DNSServers",
+                    "X_TP_IPv4Enabled",
+                    "secondConnection",
+                    "enable",
+                    "[WAN_IP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]2,12",
+                    "externalIPAddress",
+                    "subnetMask",
+                    "defaultGateway",
+                    "DNSOverrideAllowed",
+                    "DNSServers",
+                    "NATEnabled",
+                    "X_TP_FullconeNATEnabled",
+                    "X_TP_FirewallEnabled",
+                    "X_TP_IGMPProxyEnabled",
+                    "X_TP_IGMPForceVersion",
+                    "maxMTUSize",
+                    "enable"
+                ]
+            },
+            {
+                "path": "2",
+                "body": [
+                    "[L3_FORWARDING#0,0,0,0,0,0#0,0,0,0,0,0]0,3",
+                    "__ifAliasName",
+                    "__ifName",
+                    "defaultConnectionService"
+                ],
+                "variables": {
+                    "__ifAliasName": {
+                        "path": "1",
+                        "body": [
+                            "[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]0,1",
+                            "name"
+                        ]
+                    }
+                }
+            }
+        ]
     }
 }

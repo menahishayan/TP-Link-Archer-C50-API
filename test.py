@@ -35,7 +35,7 @@ cookie = get_base64_cookie_string()
 
 referer = 'http://{}'.format(hostname)
 
-with open('/Users/shayan/Desktop/Projects/router/req.json') as f:
+with open('params.json') as f:
   ref = json.load(f)
 
 page = requests.post(
