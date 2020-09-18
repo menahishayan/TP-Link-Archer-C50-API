@@ -25,11 +25,15 @@ def req_parse(body):
     return bodyStr
 
 def res_parse(res):
+    itemContainer = []
     items = {}
-    for b in res.splitlines():
+    for b in res.splitlines()[1:]:
         if '=' in b:
             items[b[0:b.index('=')]] = b[b.index('=')+1:]
-    return items
+        if b[0] == '[':
+            itemContainer.append(items.copy())
+            items = {}
+    return itemContainer
 
 cookie = get_base64_cookie_string()
 
@@ -50,4 +54,5 @@ def get(item):
     else:
         print(page.status_code)
 
-print(get('dhcp_clients'))
+for device in get('dhcp_clients'):
+    print(device['hostName'])
