@@ -38,10 +38,16 @@ referer = 'http://{}'.format(hostname)
 with open('params.json') as f:
   ref = json.load(f)
 
-page = requests.post(
-    'http://{}/cgi?{}'.format(hostname,ref['version']['path']),
-    headers={REFERER: referer, COOKIE: cookie},
-    data=(req_parse(ref['version']['body'])),
-    timeout=4)
-    
-print(res_parse(page.text))
+def get(item):
+    page = requests.post(
+        'http://{}/cgi?{}'.format(hostname,ref['get'][item]['path']),
+        headers={REFERER: referer, COOKIE: cookie},
+        data=(req_parse(ref['get'][item]['body'])),
+        timeout=4)
+        
+    if page.status_code == 200:
+        return res_parse(page.text)
+    else:
+        print(page.status_code)
+
+print(get('dhcp_clients'))
