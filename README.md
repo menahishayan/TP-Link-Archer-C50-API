@@ -61,10 +61,12 @@ router._set('wan', [{}, {'[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]1,19': {'enable'
 router._set('wan', [{}, {'[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]1,19': {'enable': '0'}}])
 ```
 
-Return Format: Boolean
-Return: 
- - `true` if all sub-tasks were successful
- - `false` if any of the sub-tasks fails
+Return Format: Boolean  
+ 
+Supported Parameters:
+ - `wan`
+ - `24ghz`
+ - `5ghz`
  
 *`_set()` only updates the keys passed in argument 2. All other values are either fetched from the router wherever available.*
 
@@ -76,3 +78,28 @@ Argument 2 passed to `_set()` **must** be a List of Dictionaries.
 Each list item in Argument 2 of `_set()` directly corresponds to each subtask in the process.  
 Omitting an item in the list will ignore that subtask. (See Example: Disable WAN PPPoE, index[2] omitted)  
 To run a subtask without updating any of its values, pass an empty dictionary in its position.
+
+<hr/>
+
+## Models
+This has only been tested on the TP-Link Archer C50 V1 running firmware 160411.  
+Supported Models (known):
+ - TP-Link Archer C50 V1
+ - TP-Link N600
+ 
+## Error 500 & Login Limit
+The TP-Link Web Interface only supports upto 1 user logged in at a time (for security reasons, apparently) which is the most common reason to recieve `HTTP ERROR 500`. As a workaround, you must log out from all other devices/browsers and try again. Additionally, you may also run `router._get('logout')`
+
+## Troubleshooting/Error Reporting/Contributing
+ - If you face an error, you may debug using a HTTP Requests tool/monitor on your router's configuration webpage. Additionally, you may open a new issue on this repo prefixed by [Error] describing the error
+ - If you would like to help improve the package, request features or add support for more models, open an issue prefixed by [Feature Request] or [Improvement]
+
+## PRs and Commit Template
+PRs and commits that you make to this repo must include the following:  
+- Type: bug-fix or enhancement
+- Description: Brief description about what the commit achieves
+- Notes: (heads ups/pointers to other developers if necessary)
+
+<hr/>
+
+## Changelog
