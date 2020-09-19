@@ -337,6 +337,18 @@
                         "keys": ["[1,1,1,0,0,0]0"]
                     }
                 ],
+                "defaults": {
+                    "[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1": {
+                        "X_TP_lastUsedIntf": "pppoe_eth3_d"
+                    },
+                    "[WAN_IP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]2,12": {
+                        "subnetMask": "255.255.255.255",
+                        "maxMTUSize": "1500",
+                        "externalIPAddress": "169.254.1.1",
+                        "defaultGateway": "0.0.0.0",
+                        "DNSServers": "0.0.0.0,0.0.0.0"
+                    }
+                },
                 "body": [
                     "[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1",
                     "X_TP_lastUsedIntf",

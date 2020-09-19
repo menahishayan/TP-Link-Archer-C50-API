@@ -80,12 +80,11 @@ def _set(item,data):
     index = 0
     for i in ref['set'][item]:
         require_fetch = False
-        fetched_template = get_template(i['body'])
-        template = { **fetched_template }
+        template = get_template(i['body'])
 
-        if len(fetched_template) == len(data[index]):
-            for f in fetched_template:
-                if not len(fetched_template[f]) == len(data[index][f]):
+        if len(template) == len(data[index]):
+            for f in template:
+                if not len(template[f]) == len(data[index][f]):
                     require_fetch = True
         else:
             require_fetch = True
@@ -97,14 +96,18 @@ def _set(item,data):
                 for key in src['keys']:
                     current = { **current, **fetched_data[key] }
 
-        for d in data[index]:
+        for d in template:
             if require_fetch:
                 for t in template[d]:
                     if t in current:
                         template[d][t] = current[t]
                     elif 'mappings' in src and t in src['mappings']:
                         template[d][t] = current[src['mappings'][t]]
-            template[d].update(data[index][d])
+                    if 'defaults' in i and d in i['defaults']:
+                        if t in i['defaults'][d]:
+                            template[d][t] = i['defaults'][d][t]
+            if d in data[index]:
+                template[d].update(data[index][d])
 
         index = index+1
         if index == len(data):
@@ -117,8 +120,10 @@ def _set(item,data):
                     data=(parse_set_req(template)),
                     timeout=18)
 
-            if not page.status_code == 200:
-                print(page.status_code)
+            print(page.text)
+
+            if not page.text == '[error]0':
+                print(page.text)
                 return False
         except:
             print("Request Error")
@@ -134,17 +139,8 @@ def _set(item,data):
 # _set('24ghz',{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
 # _set('5ghz',{'[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
 payload = [
-        {'[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1':{'enable':'1'}},
-        {'[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1':{'X_TP_lastUsedIntf': 'pppoe_eth3_d'},
-        '[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]1,19': {'enable':'1'},
-        '[WAN_IP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]2,12': {
-            'subnetMask':'255.255.255.255',
-            'maxMTUSize':'1500',
-            'externalIPAddress':'169.254.1.1',
-            'defaultGateway':'0.0.0.0',
-            'DNSServers':'0.0.0.0,0.0.0.0'}
-        },
-        {'[L3_FORWARDING#0,0,0,0,0,0#0,0,0,0,0,0]0,3':{}}
+        {'[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1': {'enable':'1'}},
+        {'[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]1,19': {'enable':'1'}}
     ]
 _set('wan',payload)
 # print(_get('wan'))
