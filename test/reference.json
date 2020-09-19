@@ -277,7 +277,9 @@
                 "sources": [
                     {
                         "item": "wlan",
-                        "keys": ["[1,1,0,0,0,0]0"],
+                        "keys": [
+                            "[1,1,0,0,0,0]0"
+                        ],
                         "mappings": {
                             "BeaconType": "beaconType"
                         }
@@ -299,7 +301,9 @@
                 "sources": [
                     {
                         "item": "wlan",
-                        "keys": ["[1,2,0,0,0,0]0"],
+                        "keys": [
+                            "[1,2,0,0,0,0]0"
+                        ],
                         "mappings": {
                             "BeaconType": "beaconType"
                         }
@@ -321,7 +325,9 @@
                 "sources": [
                     {
                         "item": "wan",
-                        "keys": ["[1,1,1,0,0,0]0"]
+                        "keys": [
+                            "[1,1,1,0,0,0]0"
+                        ]
                     }
                 ],
                 "body": [
@@ -334,7 +340,9 @@
                 "sources": [
                     {
                         "item": "wan",
-                        "keys": ["[1,1,1,0,0,0]0"]
+                        "keys": [
+                            "[1,1,1,0,0,0]0"
+                        ]
                     }
                 ],
                 "defaults": {
@@ -392,7 +400,9 @@
                 "sources": [
                     {
                         "item": "wan",
-                        "keys": ["[1,1,1,0,0,0]0"],
+                        "keys": [
+                            "[1,1,1,0,0,0]0"
+                        ],
                         "mappings": {
                             "__ifAliasName": "name"
                         }
