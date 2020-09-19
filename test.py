@@ -74,46 +74,42 @@ def _get(item):
     return items
 
 def _set(item,data):
-    template = {}
-    require_fetch = False
-
     for i in ref['set'][item]:
+        require_fetch = False
         fetched_template = get_template(i['body'])
-        template = { **template, **fetched_template }
+        template = { **fetched_template }
+
         if len(fetched_template) == len(data):
             for f in fetched_template:
                 if not len(fetched_template[f]) == len(data[f]):
                     require_fetch = True
-
-    if not len(data) == len(template):
-        require_fetch = True
-            
-    # fetch
-    current = {}
-    if require_fetch:
-        for i in ref['set'][item]:
+                    
+        current = {}
+        if require_fetch:
             for src in i['sources']:
                 fetched_data = _get(src['item'])
                 for key in src['keys']:
                     current = { **current, **fetched_data[key] }
-    for d in data:
-        if require_fetch:
-            for t in template[d]:
-                if t in current:
-                    template[d][t] = current[t]
-                elif t in src['mappings']:
-                    template[d][t] = current[src['mappings'][t]]
-            # template[d].update(current)
-        template[d].update(data[d])
 
-    print(template)
-    # print(parse_set_req(template))
-    # page = requests.post(
-    #         'http://{}/cgi?{}'.format(hostname,i['path']),
-    #         headers={REFERER: referer, COOKIE: cookie},
-    #         data=(parse_set_req(template)),
-    #         timeout=4)
-    # print(page.text)
+        for d in data:
+            if require_fetch:
+                for t in template[d]:
+                    if t in current:
+                        template[d][t] = current[t]
+                    elif t in src['mappings']:
+                        template[d][t] = current[src['mappings'][t]]
+            template[d].update(data[d])
+
+        page = requests.post(
+                'http://{}/cgi?{}'.format(hostname,i['path']),
+                headers={REFERER: referer, COOKIE: cookie},
+                data=(parse_set_req(template)),
+                timeout=8)
+
+        if not page.status_code == 200:
+            print(page.status_code)
+            return False
+    return True
 
 # for d in get('wlan').values():
 #     print(d['SSID'])
@@ -121,5 +117,5 @@ def _set(item,data):
 
 # get('restart')
 
-_set('24ghz',{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'notbazingaa'}})
+_set('24ghz',{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
 # print(_get('wlan')['[1,1,0,0,0,0]0'])
