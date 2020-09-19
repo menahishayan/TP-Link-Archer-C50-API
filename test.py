@@ -77,15 +77,18 @@ def _get(item):
     return items
 
 def _set(item,data):
+    index = 0
     for i in ref['set'][item]:
         require_fetch = False
         fetched_template = get_template(i['body'])
         template = { **fetched_template }
 
-        if len(fetched_template) == len(data):
+        if len(fetched_template) == len(data[index]):
             for f in fetched_template:
-                if not len(fetched_template[f]) == len(data[f]):
+                if not len(fetched_template[f]) == len(data[index][f]):
                     require_fetch = True
+        else:
+            require_fetch = True
 
         current = {}
         if require_fetch:
@@ -94,14 +97,18 @@ def _set(item,data):
                 for key in src['keys']:
                     current = { **current, **fetched_data[key] }
 
-        for d in data:
+        for d in data[index]:
             if require_fetch:
                 for t in template[d]:
                     if t in current:
                         template[d][t] = current[t]
-                    elif t in src['mappings']:
+                    elif 'mappings' in src and t in src['mappings']:
                         template[d][t] = current[src['mappings'][t]]
-            template[d].update(data[d])
+            template[d].update(data[index][d])
+
+        index = index+1
+        if index == len(data):
+            data.append({})
 
         try:
             page = requests.post(
@@ -125,5 +132,19 @@ def _set(item,data):
 # get('restart')
 
 # _set('24ghz',{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
-_set('5ghz',{'[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
-# print(_get('wlan')['[1,1,0,0,0,0]0'])
+# _set('5ghz',{'[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
+payload = [
+        {'[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1':{'enable':'1'}},
+        {'[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1':{'X_TP_lastUsedIntf': 'pppoe_eth3_d'},
+        '[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]1,19': {'enable':'1'},
+        '[WAN_IP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]2,12': {
+            'subnetMask':'255.255.255.255',
+            'maxMTUSize':'1500',
+            'externalIPAddress':'169.254.1.1',
+            'defaultGateway':'0.0.0.0',
+            'DNSServers':'0.0.0.0,0.0.0.0'}
+        },
+        {'[L3_FORWARDING#0,0,0,0,0,0#0,0,0,0,0,0]0,3':{}}
+    ]
+_set('wan',payload)
+# print(_get('wan'))

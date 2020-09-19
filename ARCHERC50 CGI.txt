@@ -1,20 +1,3 @@
-Set 2.4
-
-[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5
-BeaconType=11i
-IEEE11iAuthenticationMode=PSKAuthentication
-IEEE11iEncryptionModes=AESEncryption
-X_TP_PreSharedKey=bazingaa
-X_TP_GroupKeyUpdateInterval=0
-
-Set 5
-
-[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5
-BeaconType=11i
-IEEE11iAuthenticationMode=PSKAuthentication
-IEEE11iEncryptionModes=AESEncryption
-X_TP_PreSharedKey=bazingaa
-X_TP_GroupKeyUpdateInterval=0
 
 Set WAN
 

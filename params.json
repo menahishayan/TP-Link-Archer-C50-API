@@ -318,6 +318,12 @@
         "wan": [
             {
                 "path": "2",
+                "sources": [
+                    {
+                        "item": "wan",
+                        "keys": ["[1,1,1,0,0,0]0"]
+                    }
+                ],
                 "body": [
                     "[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1",
                     "enable"
@@ -325,6 +331,12 @@
             },
             {
                 "path": "2&2&2",
+                "sources": [
+                    {
+                        "item": "wan",
+                        "keys": ["[1,1,1,0,0,0]0"]
+                    }
+                ],
                 "body": [
                     "[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1",
                     "X_TP_lastUsedIntf",
@@ -365,22 +377,21 @@
             },
             {
                 "path": "2",
+                "sources": [
+                    {
+                        "item": "wan",
+                        "keys": ["[1,1,1,0,0,0]0"],
+                        "mappings": {
+                            "__ifAliasName": "name"
+                        }
+                    }
+                ],
                 "body": [
                     "[L3_FORWARDING#0,0,0,0,0,0#0,0,0,0,0,0]0,3",
                     "__ifAliasName",
                     "__ifName",
                     "defaultConnectionService"
-                ],
-                "variables": {
-                    "__ifAliasName": {
-                        "path": "1",
-                        "key": "name",
-                        "body": [
-                            "[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]0,1",
-                            "name"
-                        ]
-                    }
-                }
+                ]
             }
         ]
     }
