@@ -25,12 +25,12 @@ router._get('wlan')
 router._get('version')
 
 # Result
-# {
-#     '[0,0,0,0,0,0]0': {
-#          'hardwareVersion': 'Archer C50 v1 00000002', 
-#          'softwareVersion': '0.9.1 3.0 v0045.0 Build 160411 Rel.42416n'
-#     }
-# }
+{
+     '[0,0,0,0,0,0]0': {
+          'hardwareVersion': 'Archer C50 v1 00000002', 
+          'softwareVersion': '0.9.1 3.0 v0045.0 Build 160411 Rel.42416n'
+     }
+}
 ```
 Supported Parameters:
  - `about`
@@ -46,3 +46,9 @@ Supported Parameters:
  - `logout`
 
 Return Format: Dictionary
+
+### Set
+Change Password of 2.4Ghz Network:
+```python
+router._set('24ghz', [{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5': {'X_TP_PreSharedKey': 'new_password'}}])
+```
