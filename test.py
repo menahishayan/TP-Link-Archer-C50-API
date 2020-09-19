@@ -53,5 +53,8 @@ def get(item):
             print(page.status_code)
     return items
 
-for d in get('wlan').values():
-    print(d)
+# for d in get('wlan').values():
+#     print(d['SSID'])
+#     print(d['X_TP_PreSharedKey'])
+
+# get('restart')
