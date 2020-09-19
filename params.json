@@ -41,6 +41,7 @@
         "dhcp_clients": [
             {
                 "path": "5",
+                "key": "hostName",
                 "body": [
                     "[LAN_HOST_ENTRY#0,0,0,0,0,0#0,0,0,0,0,0]0,4",
                     "leaseTimeRemaining",
@@ -69,6 +70,7 @@
         "info": [
             {
                 "path": "1&1&1&5&5&5&5&5&5&5",
+                "key": "info1",
                 "body": [
                     "[SYS_MODE#0,0,0,0,0,0#0,0,0,0,0,0]0,1",
                     "mode",
@@ -103,6 +105,7 @@
             },
             {
                 "path": "1&1&5&5&5",
+                "key": "info2",
                 "body": [
                     "[LAN_WLAN_WDSBRIDGE#1,1,0,0,0,0#0,0,0,0,0,0]0,1",
                     "BridgeEnable",
@@ -117,6 +120,7 @@
             },
             {
                 "path": "5&5",
+                "key": "info3",
                 "body": [
                     "[LAN_IP_INTF#0,0,0,0,0,0#0,0,0,0,0,0]0,3",
                     "IPInterfaceIPAddress",
@@ -124,6 +128,59 @@
                     "X_TP_MACAddress",
                     "[LAN_HOST_CFG#0,0,0,0,0,0#0,0,0,0,0,0]1,1",
                     "DHCPServerEnable"
+                ]
+            }
+        ],
+        "wlan": [
+            {
+                "path": "5",
+                "key": "name",
+                "body": [
+                    "[LAN_WLAN#0,0,0,0,0,0#0,0,0,0,0,0]0,18",
+                    "name",
+                    "Standard",
+                    "SSID",
+                    "RegulatoryDomain",
+                    "PossibleChannels",
+                    "RegulatoryDomain",
+                    "AutoChannelEnable",
+                    "Channel",
+                    "X_TP_Bandwidth",
+                    "Enable",
+                    "SSIDAdvertisementEnabled",
+                    "BeaconType",
+                    "BasicEncryptionModes",
+                    "WPAEncryptionModes",
+                    "IEEE11iEncryptionModes",
+                    "X_TP_Configuration_Modified",
+                    "WMMEnable",
+                    "X_TP_FragmentThreshold"
+                ]
+            },
+            {
+                "path": "5",
+                "key": "name",
+                "body": [
+                    "[LAN_WLAN#0,0,0,0,0,0#0,0,0,0,0,0]0,19",
+                    "name",
+                    "SSID",
+                    "Enable",
+                    "X_TP_Configuration_Modified",
+                    "beaconType",
+                    "Standard",
+                    "WEPEncryptionLevel",
+                    "WEPKeyIndex",
+                    "BasicEncryptionModes",
+                    "BasicAuthenticationMode",
+                    "WPAEncryptionModes",
+                    "WPAAuthenticationMode",
+                    "IEEE11iEncryptionModes",
+                    "IEEE11iAuthenticationMode",
+                    "X_TP_PreSharedKey",
+                    "X_TP_GroupKeyUpdateInterval",
+                    "X_TP_RadiusServerIP",
+                    "X_TP_RadiusServerPort",
+                    "X_TP_RadiusServerPassword"
                 ]
             }
         ],
