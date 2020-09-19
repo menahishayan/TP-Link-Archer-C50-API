@@ -14,13 +14,13 @@ def get_base64_cookie_string():
     ).decode('ascii')
     return 'Authorization=Basic {}'.format(b64_encoded_username_password)
 
-def req_parse(body):
+def parse_get_req(body):
     bodyStr = ''
     for b in body:
         bodyStr += b + '\r\n'
     return bodyStr
 
-def res_parse(res):
+def parse_response(res):
     items = {}
     key = '0'
     for b in res.splitlines():
@@ -32,29 +32,53 @@ def res_parse(res):
 
     return items
 
+def get_template(body):
+    items = {}
+    key = '0'
+    for b in body:
+        if b[0] == '[':
+            key = b
+            items[key] = {}
+        else:
+            items[key][b] = ''
+
+    return items
+
 cookie = get_base64_cookie_string()
 referer = 'http://{}'.format(hostname)
 
 with open('params.json') as f:
   ref = json.load(f)
 
-def get(item):
+def _get(item):
     items = {}
     for i in ref['get'][item]:
         page = requests.post(
             'http://{}/cgi?{}'.format(hostname,i['path']),
             headers={REFERER: referer, COOKIE: cookie},
-            data=(req_parse(i['body'])),
+            data=(parse_get_req(i['body'])),
             timeout=4)
             
         if page.status_code == 200:
-            items = { **items, **res_parse(page.text) }
+            items = { **items, **parse_response(page.text) }
         else:
             print(page.status_code)
     return items
+
+def _set(item,data):
+    template = {}
+    for i in ref['set'][item]:
+        template = { **template, **get_template(i['body']) }
+    print(template)
+    # for d in data:
+    #     template[d].update(data[d])
+    template.update(data)
+    print(template)
 
 # for d in get('wlan').values():
 #     print(d['SSID'])
 #     print(d['X_TP_PreSharedKey'])
 
 # get('restart')
+
+_set('24ghz',{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'notbazingaa'}})
