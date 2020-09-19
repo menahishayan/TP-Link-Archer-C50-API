@@ -5,8 +5,29 @@
 
 ## Usage
 ### Initialize
-````import tplinkrouter  
+Enter your hostname/IP & credentials used to log in to your router management page
+```python
+import tplinkrouter  
 
-r = tplinkrouter.C50('hostname','username','password')````
-
+router = tplinkrouter.C50('hostname','username','password')
+```
 ### Get
+Examples:
+```python
+router._get('wlan')
+```
+```python
+router._get('version')
+```
+Supported Parameters:
+ - `about`
+ - `version`
+ - `info`
+ - `wan`
+ - `wlan`
+ - `24ghz`
+ - `5ghz`
+ - `dhcp_settings`
+ - `dhcp_clients`
+ - `restart`
+ - `logout`
