@@ -1,4 +1,3 @@
-from aiohttp.hdrs import (COOKIE, REFERER)
 import base64
 import requests
 
@@ -86,7 +85,7 @@ class C50:
             try:
                 page = requests.post(
                     'http://{}/cgi?{}'.format(self.hostname, i['path']),
-                    headers={REFERER: self.referer, COOKIE: self.cookie},
+                    headers={'referer': self.referer, 'cookie': self.cookie},
                     data=(self.parse_get_req(i['body'])),
                     timeout=4)
 
@@ -135,7 +134,7 @@ class C50:
             try:
                 page = requests.post(
                     'http://{}/cgi?{}'.format(self.hostname, i['path']),
-                    headers={REFERER: self.referer, COOKIE: self.cookie},
+                    headers={'referer': self.referer, 'cookie': self.cookie},
                     data=(self.parse_set_req(template)),
                     timeout=18)
 
