@@ -84,7 +84,7 @@ def _set(item,data):
 
         if len(template) == len(data[index]):
             for f in template:
-                if not len(template[f]) == len(data[index][f]):
+                if f not in data[index] or not len(template[f]) == len(data[index][f]):
                     require_fetch = True
         else:
             require_fetch = True
@@ -109,10 +109,6 @@ def _set(item,data):
             if d in data[index]:
                 template[d].update(data[index][d])
 
-        index = index+1
-        if index == len(data):
-            data.append({})
-
         try:
             page = requests.post(
                     'http://{}/cgi?{}'.format(hostname,i['path']),
@@ -128,6 +124,11 @@ def _set(item,data):
         except:
             print("Request Error")
             return False
+
+        index = index+1
+        if index == len(data):
+            break
+
     return True
 
 # for d in get('wlan').values():
@@ -136,11 +137,7 @@ def _set(item,data):
 
 # get('restart')
 
-# _set('24ghz',{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
-# _set('5ghz',{'[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
-payload = [
-        {'[WAN_ETH_INTF#1,0,0,0,0,0#0,0,0,0,0,0]0,1': {'enable':'1'}},
-        {'[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]1,19': {'enable':'1'}}
-    ]
-_set('wan',payload)
+# _set('24ghz',[{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}}])
+# _set('5ghz',[{'[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}}])
+_set('wan',[{},{'[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]1,19': {'enable':'1'}},{}])
 # print(_get('wan'))
