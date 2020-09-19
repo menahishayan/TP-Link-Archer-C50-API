@@ -61,16 +61,19 @@ with open('params.json') as f:
 def _get(item):
     items = {}
     for i in ref['get'][item]:
-        page = requests.post(
-            'http://{}/cgi?{}'.format(hostname,i['path']),
-            headers={REFERER: referer, COOKIE: cookie},
-            data=(parse_get_req(i['body'])),
-            timeout=4)
-            
-        if page.status_code == 200:
-            items = { **items, **parse_response(page.text) }
-        else:
-            print(page.status_code)
+        try:
+            page = requests.post(
+                'http://{}/cgi?{}'.format(hostname,i['path']),
+                headers={REFERER: referer, COOKIE: cookie},
+                data=(parse_get_req(i['body'])),
+                timeout=4)
+                
+            if page.status_code == 200:
+                items = { **items, **parse_response(page.text) }
+            else:
+                print(page.status_code)
+        except:
+            print("Request Error")
     return items
 
 def _set(item,data):
@@ -83,7 +86,7 @@ def _set(item,data):
             for f in fetched_template:
                 if not len(fetched_template[f]) == len(data[f]):
                     require_fetch = True
-                    
+
         current = {}
         if require_fetch:
             for src in i['sources']:
@@ -100,14 +103,18 @@ def _set(item,data):
                         template[d][t] = current[src['mappings'][t]]
             template[d].update(data[d])
 
-        page = requests.post(
-                'http://{}/cgi?{}'.format(hostname,i['path']),
-                headers={REFERER: referer, COOKIE: cookie},
-                data=(parse_set_req(template)),
-                timeout=8)
+        try:
+            page = requests.post(
+                    'http://{}/cgi?{}'.format(hostname,i['path']),
+                    headers={REFERER: referer, COOKIE: cookie},
+                    data=(parse_set_req(template)),
+                    timeout=18)
 
-        if not page.status_code == 200:
-            print(page.status_code)
+            if not page.status_code == 200:
+                print(page.status_code)
+                return False
+        except:
+            print("Request Error")
             return False
     return True
 
@@ -117,5 +124,6 @@ def _set(item,data):
 
 # get('restart')
 
-_set('24ghz',{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
+# _set('24ghz',{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
+_set('5ghz',{'[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'bazingaa'}})
 # print(_get('wlan')['[1,1,0,0,0,0]0'])

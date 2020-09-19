@@ -296,6 +296,15 @@
         "5ghz": [
             {
                 "path": "2",
+                "sources": [
+                    {
+                        "item": "wlan",
+                        "keys": ["[1,2,0,0,0,0]0"],
+                        "mappings": {
+                            "BeaconType": "beaconType"
+                        }
+                    }
+                ],
                 "body": [
                     "[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5",
                     "BeaconType",
