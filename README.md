@@ -1,7 +1,7 @@
 # TP-Link Archer C50 API
  HTTP based python package for API access and router management of the TP-Link Archer C50
 
-**Version 0.1.2**
+**Version 0.1.3**
 
 ## Dependencies
  - [requests](https://pypi.org/project/requests/)
@@ -106,6 +106,8 @@ PRs and commits that you make to this repo must include the following:
 <hr/>
 
 ## Changelog
+### v0.1.3
+ - Fix pip deploy bug
 ### v0.1.2
  - Fix pip import bug
 ### v0.1.1
