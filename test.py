@@ -20,28 +20,19 @@ def req_parse(body):
         bodyStr += b + '\r\n'
     return bodyStr
 
-def res_parse(res,key):
-    items = [] if key == '' else {}
-    item = {}
-    for b in res.splitlines()[1:]:
-        print(b)
+def res_parse(res):
+    items = {}
+    key = '0'
+    for b in res.splitlines():
+        if b[0] == '[' and 'error' not in b:
+            key = b
+            items[key] = {}
         if '=' in b:
-            item[b[0:b.index('=')]] = b[b.index('=')+1:]
-        if b[0] == '[':
-            if key == '':
-                items.append(item.copy())
-            else:
-                items[item[key] if key in item else key] = item.copy()
-            item = {}
+            items[key][b[0:b.index('=')]] = b[b.index('=')+1:]
 
-    print('\n')
-    if key == '':
-        return items[0] if len(items) < 2 else items[0]
-    else:
-        return items
+    return items
 
 cookie = get_base64_cookie_string()
-
 referer = 'http://{}'.format(hostname)
 
 with open('params.json') as f:
@@ -57,12 +48,10 @@ def get(item):
             timeout=4)
             
         if page.status_code == 200:
-            items = { **items, **res_parse(page.text, i['key'] if 'key' in i else '') }
+            items = { **items, **res_parse(page.text) }
         else:
             print(page.status_code)
     return items
 
-# for d in get('dhcp_clients')[0]:
-#     print(d['hostName'])
-
-print(get('info'))
+for d in get('wlan').values():
+    print(d)

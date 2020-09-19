@@ -41,7 +41,6 @@
         "dhcp_clients": [
             {
                 "path": "5",
-                "key": "hostName",
                 "body": [
                     "[LAN_HOST_ENTRY#0,0,0,0,0,0#0,0,0,0,0,0]0,4",
                     "leaseTimeRemaining",
@@ -70,7 +69,6 @@
         "info": [
             {
                 "path": "1&1&1&5&5&5&5&5&5&5",
-                "key": "info1",
                 "body": [
                     "[SYS_MODE#0,0,0,0,0,0#0,0,0,0,0,0]0,1",
                     "mode",
@@ -105,7 +103,6 @@
             },
             {
                 "path": "1&1&5&5&5",
-                "key": "info2",
                 "body": [
                     "[LAN_WLAN_WDSBRIDGE#1,1,0,0,0,0#0,0,0,0,0,0]0,1",
                     "BridgeEnable",
@@ -120,7 +117,6 @@
             },
             {
                 "path": "5&5",
-                "key": "info3",
                 "body": [
                     "[LAN_IP_INTF#0,0,0,0,0,0#0,0,0,0,0,0]0,3",
                     "IPInterfaceIPAddress",
@@ -134,7 +130,6 @@
         "wlan": [
             {
                 "path": "5",
-                "key": "name",
                 "body": [
                     "[LAN_WLAN#0,0,0,0,0,0#0,0,0,0,0,0]0,18",
                     "name",
@@ -159,7 +154,6 @@
             },
             {
                 "path": "5",
-                "key": "name",
                 "body": [
                     "[LAN_WLAN#0,0,0,0,0,0#0,0,0,0,0,0]0,19",
                     "name",
