@@ -20,6 +20,14 @@ def parse_get_req(body):
         bodyStr += b + '\r\n'
     return bodyStr
 
+def parse_set_req(items):
+    bodyStr = ''
+    for item in items:
+        bodyStr += item + '\r\n'
+        for i in items[item]:
+            bodyStr += i + '=' + items[item][i] + '\r\n'
+    return bodyStr
+
 def parse_response(res):
     items = {}
     key = '0'
@@ -67,13 +75,45 @@ def _get(item):
 
 def _set(item,data):
     template = {}
+    require_fetch = False
+
     for i in ref['set'][item]:
-        template = { **template, **get_template(i['body']) }
+        fetched_template = get_template(i['body'])
+        template = { **template, **fetched_template }
+        if len(fetched_template) == len(data):
+            for f in fetched_template:
+                if not len(fetched_template[f]) == len(data[f]):
+                    require_fetch = True
+
+    if not len(data) == len(template):
+        require_fetch = True
+            
+    # fetch
+    current = {}
+    if require_fetch:
+        for i in ref['set'][item]:
+            for src in i['sources']:
+                fetched_data = _get(src['item'])
+                for key in src['keys']:
+                    current = { **current, **fetched_data[key] }
+    for d in data:
+        if require_fetch:
+            for t in template[d]:
+                if t in current:
+                    template[d][t] = current[t]
+                elif t in src['mappings']:
+                    template[d][t] = current[src['mappings'][t]]
+            # template[d].update(current)
+        template[d].update(data[d])
+
     print(template)
-    # for d in data:
-    #     template[d].update(data[d])
-    template.update(data)
-    print(template)
+    # print(parse_set_req(template))
+    # page = requests.post(
+    #         'http://{}/cgi?{}'.format(hostname,i['path']),
+    #         headers={REFERER: referer, COOKIE: cookie},
+    #         data=(parse_set_req(template)),
+    #         timeout=4)
+    # print(page.text)
 
 # for d in get('wlan').values():
 #     print(d['SSID'])
@@ -82,3 +122,4 @@ def _set(item,data):
 # get('restart')
 
 _set('24ghz',{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5':{'X_TP_PreSharedKey':'notbazingaa'}})
+# print(_get('wlan')['[1,1,0,0,0,0]0'])

@@ -274,6 +274,15 @@
         "24ghz": [
             {
                 "path": "2",
+                "sources": [
+                    {
+                        "item": "wlan",
+                        "keys": ["[1,1,0,0,0,0]0"],
+                        "mappings": {
+                            "BeaconType": "beaconType"
+                        }
+                    }
+                ],
                 "body": [
                     "[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5",
                     "BeaconType",
@@ -356,6 +365,7 @@
                 "variables": {
                     "__ifAliasName": {
                         "path": "1",
+                        "key": "name",
                         "body": [
                             "[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]0,1",
                             "name"
