@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: tplinkrouter
-Version: 0.1.3
+Version: 0.2.0
 Summary: TP-Link Archer C50 API
 Home-page: https://github.com/menahishayan/TP-Link-Archer-C50-API
 Author: Menahi Shayan
@@ -9,7 +9,7 @@ License: UNKNOWN
 Description: # TP-Link Archer C50 API
          HTTP based python package for API access and router management of the TP-Link Archer C50
         
-        **Version 0.1.3**
+        **Version 0.2.0**
         
         ## Dependencies
          - [requests](https://pypi.org/project/requests/)
