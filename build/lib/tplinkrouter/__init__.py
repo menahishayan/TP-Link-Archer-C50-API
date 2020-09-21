@@ -1,7 +1,7 @@
 import base64
 import requests
 
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 
 class C50:
     def __init__(self,hostname,username,password):
@@ -115,6 +115,8 @@ class C50:
             except:
                 items = {**items, 'status_code':-1}
                 return items
+        if not item == 'logout':
+            self._get('logout')
         return items
 
 
@@ -168,7 +170,8 @@ class C50:
             index = index+1
             if index == len(data):
                 break
-
+        
+        self._get('logout')
         return True
 
     def about(self):
