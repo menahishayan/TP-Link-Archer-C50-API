@@ -1,7 +1,7 @@
 import base64
 import requests
 
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 
 class C50:
     def __init__(self,hostname,username,password):
@@ -288,6 +288,3 @@ class C50:
             return True if self._get('logout')['status_code'] == 200 else False
         except:
             return False
-
-r = C50('192.168.0.1','admin','alphatango')
-print(r.logout())
