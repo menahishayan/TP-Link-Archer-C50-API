@@ -1,14 +1,15 @@
 import base64
 import requests
 
-__version__ = '0.3.1'
+__version__ = '0.3.2'
 
 class C50:
-    def __init__(self,hostname,username,password):
+    def __init__(self,hostname,username,password,logger=None):
         self.hostname = hostname
         self.auth = { 'username': username, 'password': password }
         self.cookie = self.get_base64_cookie_string()
         self.referer = 'http://{}'.format(self.hostname)
+        self.logger = logger
         self.ref = {
             'get': {
                 'about': [{'path': '1&1&1&8', 'body': ['[IGD_DEV_INFO#0,0,0,0,0,0#0,0,0,0,0,0]0,3', 'modelName', 'description', 'X_TP_isFD', '[ETH_SWITCH#0,0,0,0,0,0#0,0,0,0,0,0]1,1', 'numberOfVirtualPorts', '[SYS_MODE#0,0,0,0,0,0#0,0,0,0,0,0]2,1', 'mode', '[/cgi/info#0,0,0,0,0,0#0,0,0,0,0,0]3,0']}],
@@ -43,8 +44,13 @@ class C50:
             self.description = about['description']
             self.__version__ = self._get('version')['[0,0,0,0,0,0]0']['softwareVersion'].split()[4]
         except:
-            print("Metadata Update Error.")
+            self.log("Metadata Update Error.")
 
+    def log(self,msg):
+        if self.logger:
+            logger.error(msg)
+        else:
+            print(msg)
 
     def get_base64_cookie_string(self):
         username_password = '{}:{}'.format(self.auth['username'], self.auth['password'])
@@ -110,7 +116,7 @@ class C50:
                 if page.status_code == 200:
                     items = {**items, **self.parse_response(page.text)}
                 else:
-                    print('{} Get Error: {}'.format(self.__name__, page.status_code))
+                    self.log('{} Get Error: {}'.format(self.__name__, page.status_code))
                     return items
             except:
                 items = {**items, 'status_code':-1}
@@ -161,10 +167,10 @@ class C50:
                     timeout=18)
 
                 if not page.text == '[error]0':
-                    print(page.text)
+                    self.log(page.text)
                     return False
             except:
-                print("Request Error")
+                self.log("Request Error")
                 return False
 
             index = index+1
