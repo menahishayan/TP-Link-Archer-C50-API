@@ -1,7 +1,7 @@
 import base64
 import requests
 
-__version__ = '0.3.2'
+__version__ = '0.3.3'
 
 class C50:
     def __init__(self,hostname,username,password,logger=None):
@@ -48,7 +48,7 @@ class C50:
 
     def log(self,msg):
         if self.logger:
-            logger.error(msg)
+            self.logger.error(msg)
         else:
             print(msg)
 
