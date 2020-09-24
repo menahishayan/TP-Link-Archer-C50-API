@@ -17,7 +17,7 @@ router = tplinkrouter.C50('hostname','username','password')
 
 **OPTIONAL:** You may also pass a logger as `router = tplinkrouter.C50('hostname','username','password',_LOGGER)` to log errors instead of printing them
 
-### Built-in Methods (v0.3.0+)
+### Built-in Functions (v0.3.0+)
 ```python
 router.about()
 
@@ -72,7 +72,7 @@ router.set_band('5GHz',False)
 **`restart`** | | Does what it says on the can | boolean
 **`logout`** | | Does what it says on the can | boolean
 
-### _get()
+### Internal Function: _get()
 Internal function used to access different named commands. You may use this if you want direct access to the router's return data without the cleanup done by built-in functions
 ```python
 router._get('wlan')
@@ -95,7 +95,7 @@ Supported Parameters:
 
 Return Format: Dictionary
 
-### _set()
+### Internal Function: _set()
 Internal function used to run different **set** processes. You may use this if you want to directly set the router's parameters without the processing done by built-in functions  
 
 Change Password of 2.4Ghz Network:
