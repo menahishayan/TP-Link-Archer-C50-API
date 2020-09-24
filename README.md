@@ -1,7 +1,7 @@
 # TP-Link Archer C50 API
  HTTP based python package for API access and router management of the TP-Link Archer C50
 
-**Version 0.3.3**
+**Version 1.0.0**
 
 ## Dependencies
  - [requests](https://pypi.org/project/requests/)
@@ -14,27 +14,69 @@ import tplinkrouter
 
 router = tplinkrouter.C50('hostname','username','password')
 ```
+
+**OPTIONAL: You may also pass a logger as `router = tplinkrouter.C50('hostname','username','password',_LOGGER)` so errors will be logged instead of being printed**
+
+### Built-in Methods (v0.3.0+)
+```python
+router.about()
+
+# Return
+{
+     'modelName': 'Archer C50',
+     'description': 'TP-Link Archer C50 AC1200 Dual-Band'
+}
+```
+
+```python
+router.get_clients()
+
+# Return
+['johns-iphone','macbook-pro','android-c78df7av3c5d4ba43cad65c6']
+```
+
+```python
+router.get_password('MYSSID1')
+
+# Return
+'mypassword24ghz'
+```
+
+```python
+router.set_password('MYSSID1','bobsyouruncle')
+```
+
+```python
+# Disable SSID broadcast of MYSSID2
+router.set_ssid_state('MYSSID2',False)
+```
+
+```python
+# Disable 5GHz Band
+router.set_band('5GHz',False)
+```
+
+| Function | Args | Description | Return |
+--- | --- | --- | ---
+| **`about`** | | Gets basic info about the router | `{ 'modelName', 'description' }` |
+| **`get_version`** | | Gets hardware and software version of the router | `{ 'hardwareVersion', 'softwareVersion' }` |
+| **`get_clients`** | | Gets list of connected clients (host name) including DHCP & permanent leases, across both wifi and LAN | List of strings |
+| **`get_clients_by_mac`** | | Gets list of connected clients (MAC Address) including DHCP & permanent leases, across both wifi and LAN | List of strings |
+**`get_wlans`** | | Gets details of wlans (by internal wlan name) including guest network wlans on both bands | Dict of Dicts
+**`get_ssids`** | | Gets list of ssids including guest network wlans on both bands | List of strings
+**`get_password`** | ssid -> `str: required` | Gets WPA2 PSK of specified SSID | string
+**`set_password`** | ssid -> `str: required`  password -> `str: required` | Sets new WPA2 PSK of specified SSID | boolean
+**`set_ssid_state`** | ssid -> `str: required`  state -> `boolean: required` | Enables/disables SSID broadcast of the specified SSID | boolean
+**`set_band`** | band -> `2.4GHz` or `5GHz`  state -> `boolean: required` | Enables/disables specified band | boolean
+**`is_on`** | | Returns whether or not the device is powered on | boolean
+**`restart`** | | Does what it says on the can | boolean
+**`logout`** | | Does what it says on the can | boolean
+
 ### Get
 ```python
 router._get('wlan')
-
-# Return
-{
-    '[1,1,0,0,0,0]0': {'name': 'wlan0', 'SSID': 'myssid 2.4Ghz', 'enable': '1', 'X_TP_Configuration_Modified': '1', 'beaconType': '11i', 'standard': 'n', 'WEPEncryptionLevel': 'Disabled,40-bits,104-bits', 'WEPKeyIndex': '1', 'basicEncryptionModes': 'None', 'basicAuthenticationMode': 'None', 'WPAEncryptionModes': 'TKIPandAESEncryption', 'WPAAuthenticationMode': 'PSKAuthentication', 'IEEE11iEncryptionModes': 'AESEncryption', 'IEEE11iAuthenticationMode': 'PSKAuthentication', 'X_TP_PreSharedKey': 'password', 'X_TP_GroupKeyUpdateInterval': '0', 'X_TP_RadiusServerIP': '', 'X_TP_RadiusServerPort': '1812', 'X_TP_RadiusServerPassword': ''}, 
-    '[1,2,0,0,0,0]0': {'name': 'wlan5', 'SSID': 'myssid 5Ghz', 'enable': '1', 'X_TP_Configuration_Modified': '0', 'beaconType': '11i', 'standard': 'ac', 'WEPEncryptionLevel': 'Disabled,40-bits,104-bits', 'WEPKeyIndex': '1', 'basicEncryptionModes': 'None', 'basicAuthenticationMode': 'None', 'WPAEncryptionModes': 'TKIPandAESEncryption', 'WPAAuthenticationMode': 'PSKAuthentication', 'IEEE11iEncryptionModes': 'AESEncryption', 'IEEE11iAuthenticationMode': 'PSKAuthentication', 'X_TP_PreSharedKey': 'password', 'X_TP_GroupKeyUpdateInterval': '0', 'X_TP_RadiusServerIP': '', 'X_TP_RadiusServerPort': '1812', 'X_TP_RadiusServerPassword': ''}
-}
 ```
-```python
-router._get('version')
 
-# Return
-{
-     '[0,0,0,0,0,0]0': {
-          'hardwareVersion': 'Archer C50 v1 00000002', 
-          'softwareVersion': '0.9.1 3.0 v0045.0 Build 160411 Rel.42416n'
-     }
-}
-```
 Supported Parameters:
  - `about`
  - `version`

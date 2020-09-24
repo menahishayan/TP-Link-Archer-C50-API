@@ -1,7 +1,7 @@
 import base64
 import requests
 
-__version__ = '0.3.3'
+__version__ = '1.0.0'
 
 class C50:
     def __init__(self,hostname,username,password,logger=None):

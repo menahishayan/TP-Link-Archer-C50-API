@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="tplinkrouter",
-    version="0.3.3",
+    version="1.0.0",
     author="Menahi Shayan",
     author_email="menahi.shayan@gmail.com",
     description="TP-Link Archer C50 API",

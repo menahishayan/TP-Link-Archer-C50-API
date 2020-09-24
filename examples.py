@@ -3,14 +3,22 @@ import tplinkrouter
 router = tplinkrouter.C50('192.168.0.1','admin','password')
 
 # Get SSID and Password of 2.4Ghz and 5Ghz
-for d in router._get('wlan').values():
-    print(d['SSID'])
-    print(d['X_TP_PreSharedKey'])
+for ssid in router.get_ssids():
+    print(ssid, router.get_password(ssid))
 
-print(router._get('version'))
+print(router.__version__)
 
+# enable/disable WAN
 router._set('wan', [{}, {'[WAN_PPP_CONN#1,1,1,0,0,0#0,0,0,0,0,0]1,19': {'enable': '1'}}, {}])
-router._set('24ghz', [{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5': {'X_TP_PreSharedKey': 'pass'}}])
-router._set('5ghz', [{'[LAN_WLAN#1,2,0,0,0,0#0,0,0,0,0,0]0,5': {'X_TP_PreSharedKey': 'pass'}}])
 
-router._get('restart')
+# enable disable 2.4GHz band
+router.set_band('2.4GHz',True)
+
+# change 5GHz password
+router.set_password('SSID 5GHz','newpassword')
+
+# restart
+router.restart()
+
+# logout
+router.logout()
