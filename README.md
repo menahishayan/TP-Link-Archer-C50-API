@@ -15,7 +15,7 @@ import tplinkrouter
 router = tplinkrouter.C50('hostname','username','password')
 ```
 
-**OPTIONAL: You may also pass a logger as `router = tplinkrouter.C50('hostname','username','password',_LOGGER)` so errors will be logged instead of being printed**
+**OPTIONAL:** You may also pass a logger as `router = tplinkrouter.C50('hostname','username','password',_LOGGER)` to log errors instead of printing them
 
 ### Built-in Methods (v0.3.0+)
 ```python
@@ -72,7 +72,8 @@ router.set_band('5GHz',False)
 **`restart`** | | Does what it says on the can | boolean
 **`logout`** | | Does what it says on the can | boolean
 
-### Get
+### _get()
+Internal function used to access different named commands. You may use this if you want direct access to the router's return data without the cleanup done by built-in functions
 ```python
 router._get('wlan')
 ```
@@ -81,10 +82,12 @@ Supported Parameters:
  - `about`
  - `version`
  - `info`
+ - `bands`
  - `wan`
  - `wlan`
- - `24ghz`
- - `5ghz`
+ - `wlan_info`
+ - `guest_24ghz`
+ - `guest_5ghz`
  - `dhcp_settings`
  - `dhcp_clients`
  - `restart`
@@ -92,7 +95,9 @@ Supported Parameters:
 
 Return Format: Dictionary
 
-### Set
+### _set()
+Internal function used to run different **set** processes. You may use this if you want to directly set the router's parameters without the processing done by built-in functions  
+
 Change Password of 2.4Ghz Network:
 ```python
 router._set('24ghz', [{'[LAN_WLAN#1,1,0,0,0,0#0,0,0,0,0,0]0,5': {'X_TP_PreSharedKey': 'new_password'}}])
@@ -112,6 +117,8 @@ Supported Parameters:
  - `wan`
  - `24ghz`
  - `5ghz`
+ - `24ghz_band`
+ - `5ghz_band`
  
 *`_set()` only updates the keys passed in argument 2. All other values are either fetched from the router wherever available.*
 
