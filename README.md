@@ -18,7 +18,7 @@ import tplinkrouter
 router = tplinkrouter.C50('hostname','username','password')
 ```
 
-**OPTIONAL:** You may also pass a logger as `router = tplinkrouter.C50('hostname','username','password',_LOGGER)` to log errors instead of printing them
+**OPTIONAL:** You may also pass a logger as `tplinkrouter.C50('hostname','username','password',_LOGGER)` to log errors instead of printing them
 
 ### Built-in Functions (v0.3.0+)
 ```python
