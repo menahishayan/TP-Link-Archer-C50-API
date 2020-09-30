@@ -131,6 +131,9 @@ Each list item in Argument 2 of `_set()` directly corresponds to each subtask in
 Omitting an item in the list will ignore that subtask. (See Example: Disable WAN PPPoE, index[2] omitted)  
 To run a subtask without updating any of its values, pass an empty dictionary in its position.
 
+#### Note 3: Status Code
+Internal functions return an additional key `status_code` with the HTTP status code of the request. Remember to ignore this key before iterating through returned Lists or Dicts.
+
 <hr/>
 
 ## Models
@@ -138,6 +141,7 @@ This has only been tested on the TP-Link Archer C50 V1 running firmware 160411.
 Supported Models (known):
  - TP-Link Archer C50 V1
  - TP-Link N600
+You're free to test on other models and report them in the Issues tab.
  
 ## Error 500 & Login Limit
 The TP-Link Web Interface only supports upto 1 user logged in at a time (for security reasons, apparently) which is the most common reason to recieve `HTTP ERROR 500`. As a workaround, you must log out from all other devices/browsers and try again. Additionally, you may also run `router._get('logout')`
@@ -155,6 +159,18 @@ PRs and commits that you make to this repo must include the following:
 <hr/>
 
 ## Changelog
+### v1.0.0
+ - First major release!
+ - Cleanup 
+### v0.3.0
+ - Logging support
+ - New return format that adds `status_code`
+ - Performance Optimization: Logout session after commands to minimize Error 500 instances
+ - Remove unnecessary I/O
+### v0.2.1
+ - Add band control toggles
+### v0.2.0
+ - Introducing built in functions! Predefined commands for the most commonly used tasks, so you don't have to manually figure out the payloads.
 ### v0.1.3
  - Fix pip deploy bug
 ### v0.1.2
