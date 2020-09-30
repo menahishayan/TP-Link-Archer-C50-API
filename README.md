@@ -3,6 +3,9 @@
 
 **Version 1.0.0**
 
+## Installation
+`pip install tplinkrouter`
+
 ## Dependencies
  - [requests](https://pypi.org/project/requests/)
 
