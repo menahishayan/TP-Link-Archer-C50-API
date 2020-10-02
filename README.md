@@ -145,13 +145,16 @@ Supported Models (known):
  - TP-Link Archer C50 V1
  - TP-Link N600
 You're free to test on other models and report them in the Issues tab.
+
+## Adding Support For More Models
+Head over to [CONTRIBUTING.md](https://github.com/menahishayan/TP-Link-Archer-C50-API/blob/master/CONTRIBUTING.md)
  
 ## Error 500 & Login Limit
 The TP-Link Web Interface only supports upto 1 user logged in at a time (for security reasons, apparently) which is the most common reason to recieve `HTTP ERROR 500`. As a workaround, you must log out from all other devices/browsers and try again. Additionally, you may also run `router._get('logout')`
 
 ## Troubleshooting/Error Reporting/Contributing
  - If you face an error, you may debug using a HTTP Requests tool/monitor on your router's configuration webpage. Additionally, you may open a new issue on this repo prefixed by [Bug]
- - If you would like to help improve the package, request features or add support for more models, open an issue prefixed by [Feature Request] or [Improvement]
+ - If you would like to help improve the package, request features or add functionality, open an issue prefixed by [Feature Request] or [Improvement]
 
 ## PRs and Commit Template
 PRs and commits that you make to this repo must include the following:  
