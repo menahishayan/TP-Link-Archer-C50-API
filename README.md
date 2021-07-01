@@ -1,7 +1,10 @@
-# TP-Link Archer C50 API
+# [Stale] TP-Link Archer C50 API
  HTTP based python package for API access and router management of the TP-Link Archer C50
 
 **Version 1.0.0**
+
+## Looking for maintainers!
+If you'd like to collaborate on this project let me know, until then, this project is no longer being maintained and might soon be deprecated.
 
 ## Installation
 `pip install tplinkrouter`
@@ -147,7 +150,8 @@ Supported Models (known):
 You're free to test on other models and report them in the Issues tab.
 
 ## Adding Support For More Models
-Head over to [CONTRIBUTING.md](https://github.com/menahishayan/TP-Link-Archer-C50-API/blob/master/CONTRIBUTING.md)
+<strike>Head over to [CONTRIBUTING.md](https://github.com/menahishayan/TP-Link-Archer-C50-API/blob/master/CONTRIBUTING.md)</strike>
+Unavailable until new maintainers can be found
  
 ## Error 500 & Login Limit
 The TP-Link Web Interface only supports upto 1 user logged in at a time (for security reasons, apparently) which is the most common reason to recieve `HTTP ERROR 500`. As a workaround, you must log out from all other devices/browsers and try again. Additionally, you may also run `router._get('logout')`
