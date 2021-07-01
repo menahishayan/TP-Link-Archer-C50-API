@@ -1,5 +1,8 @@
 # Adding Support For Your Model
 
+## Looking for maintainers
+This project is no longer being maintained. If you'd like to work on it, let me know. Until then, there's no point following the steps below.
+
 ## How It Works
 1. We're going to open up the router's web management page and figure out what internal requests the webpage is making (what commands it's sending to the router) to do the tasks in question.  
 2. We're then going to look at that data and parse it into the format that we need so the API functions can replicate those commands
